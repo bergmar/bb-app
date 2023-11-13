@@ -1,0 +1,29 @@
+version: '1.0'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4915:4915"
+    volumes:
+      - .:/bb-app
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/bb-app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
