@@ -118,7 +118,7 @@ export const highlight = (
       {atWill ? (
         <span
           ref={errorRef}
-          className="drop-shadow-white relative mx-1 rounded bg-bb-red-base px-1 font-bold text-white drop-shadow-md"
+          className="drop-shadow-white relative mx-1 inline-block rounded bg-bb-red-base px-1 font-bold text-white drop-shadow-md"
         >
           {text.charAt(index)}
 
