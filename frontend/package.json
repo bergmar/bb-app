@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:docker": "vite -- --is-docker",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -18,6 +17,7 @@
     "@mui/material": "^5.14.17",
     "@visx/xychart": "^3.4.1",
     "clsx": "^2.0.0",
+    "is-docker": "^3.0.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "@esbuild/linux-arm64": "^0.18.20",
-    "@types/node": "^20.9.0",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

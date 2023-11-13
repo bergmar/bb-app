@@ -9,4 +9,4 @@ RUN pnpm i
 COPY . .
 
 EXPOSE 4915
-CMD ["pnpm", "run", "dev:docker"]
+CMD ["pnpm", "run", "dev", "--host", "0.0.0.0"]
