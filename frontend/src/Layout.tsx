@@ -5,8 +5,26 @@ import Nav from './components/nav/Nav';
 import Footer from './components/Footer';
 import { isStartPage } from './utils';
 import clsx from 'clsx';
+import { useEffect } from 'react';
 
 const Layout = () => {
+  const location = useLocation();
+
+  const getTitle = (pathname: string) => {
+    switch (pathname) {
+      case '/brackets':
+        return 'Brackets';
+      case '/charts':
+        return 'Charts';
+    }
+    return 'Welcome to Baffin Baywatch!';
+  };
+
+  useEffect(() => {
+    (document as Document).title = getTitle(location.pathname);
+    console.log(location);
+  }, [location]);
+
   const isStart = isStartPage(useLocation());
   return (
     <div className="flex w-full items-center justify-center bg-bb-blue-lightest sm:place-content-center">

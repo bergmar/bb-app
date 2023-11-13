@@ -4,6 +4,7 @@ import NavDesktop from './NavDesktop';
 import { useQuery } from 'react-query';
 import { useLocation } from 'react-router-dom';
 import { isStartPage } from '../../utils';
+import clsx from 'clsx';
 
 export interface MenuItem {
   name: string;
@@ -44,7 +45,14 @@ const Nav = () => {
           <nav className="sm:hidden">
             <NavMobile items={items} />
           </nav>
-          <nav className="hidden sm:block">
+          <nav
+            className={clsx(
+              'absolute hidden sm:block',
+              isStart
+                ? 'animate-in-from-t left-[4rem] z-10 sm:-top-24'
+                : 'absolute -right-1 top-0 z-20 -rotate-2 transform sm:top-[2vh] '
+            )}
+          >
             <NavDesktop items={items} />
           </nav>{' '}
         </>

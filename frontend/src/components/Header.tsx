@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import SmallRedBorder from './SmallRedBorder';
 import LogotypeSmall from './LogotypeSmall';
 import { isStartPage } from '../utils';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Header() {
   const isStart = isStartPage(useLocation());
@@ -14,8 +14,8 @@ function Header() {
       <header
         className={clsx(
           'relative w-full sm:-mb-[10vh]  sm:bg-bb-blue-lighter',
-          isStart && 'h-[60vw] sm:h-[60vh] -top-[25vw] sm:top-0',
-          !isStart && 'left-0 top-0 h-[30vw] sm:h-[30vh] overflow-hidden'
+          isStart && '-top-[25vw] h-[60vw] sm:top-0 sm:h-[60vh]',
+          !isStart && 'left-0 top-0 h-[30vw] overflow-hidden sm:h-[30vh]'
         )}
       >
         {isStart ? (
@@ -28,20 +28,25 @@ function Header() {
           </div>
         )}
         {isStart ? (
-          <div className="absolute top-1/2 z-10 -translate-y-[15vw] transform sm:left-1/2 sm:z-10 sm:-translate-x-3/4 sm:-translate-y-[18vh]">
-            <LogotypeBig />
+          <div className=" absolute top-[15vw] z-10 transform sm:left-1/2 sm:top-[13vh] sm:z-10 sm:-translate-x-[34vh]">
+            <div className={clsx(isStart && 'scale-0', 'animate-zoom')}>
+              <LogotypeBig />
+            </div>
           </div>
         ) : (
-          <div className="absolute top-[3vw] z-10 transform sm:left-[4vh] sm:top-[1vh] sm:z-10 ">
+          <Link
+            to=""
+            className="absolute top-[3vw] z-10 transform sm:left-[4vh] sm:top-[1vh] sm:z-10 "
+          >
             <LogotypeSmall />
-          </div>
+          </Link>
         )}
         {isStart ? (
-          <div className="absolute top-1/2 z-10 -translate-y-[15vw] transform sm:left-1/2 sm:z-10 translate-x-[55vw] sm:translate-x-[5vh] sm:-translate-y-[24vh]">
+          <div className="absolute left-[65vw] top-[1vw] z-10 w-max transform animate-in-from-b sm:left-[51%] sm:z-10">
             <Hasselhoff />
           </div>
         ) : (
-          <div className="absolute left-[15vw] top-0 z-10 sm:left-[15vh]">
+          <div className="absolute left-[15vw] top-0 z-10 w-max sm:left-[15vh]">
             <Hasselhoff />
           </div>
         )}

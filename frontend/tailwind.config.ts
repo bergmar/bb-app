@@ -2,7 +2,7 @@
 
 export const bbColors = {
   blue: { dark: '#44648D' },
-  sand: {base: '#FFF9ED'}
+  sand: { base: '#FFF9ED' }
 }
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
@@ -23,9 +23,38 @@ export default {
             transform: 'translate(0, 12px)',
           },
         },
+        'animate-in-from-b': {
+          '0%': {
+            transform: 'translateY(10rem)',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+          },
+        },
+        'animate-in-from-t': {
+          '0%': {
+            transform: 'translateY(0)',
+          },
+          '100%': {
+            transform: 'translateY(10rem)',
+          },
+        },
+        zoom: {
+          '0%': {
+            transform: 'scale(0)',
+            opacity: 0,
+          },
+          '100%': {
+            transform: 'scale(1)',
+            opacity: 1,
+          },
+        },
       },
       animation: {
         'move-will': 'moveWill 2s linear infinite',
+        'in-from-b': 'animate-in-from-b 1s cubic-bezier(.6,.05,.15,1.02) forwards',
+        'in-from-t': 'animate-in-from-t 1.3s cubic-bezier(.6,.05,.15,1.02) forwards',
+        'zoom': 'zoom 1.4s .3s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards',
       },
       fontFamily: {
         'bb-heading': ["'Barlow Condensed'"],

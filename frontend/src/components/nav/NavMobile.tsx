@@ -24,7 +24,7 @@ const NavMobile = ({ items }: Props) => {
     <div className="w-100 border-1 absolute z-40 flex w-full place-content-end bg-transparent">
       <dialog
         open={isActive}
-        className={`left-0 z-20 m-0 h-[98vh] w-[98vw] translate-x-[1vw] translate-y-[1vh] bg-bb-blue-medium`}
+        className={`fixed left-0 z-20 m-0 h-[98vh] w-[98vw] translate-x-[1vw] translate-y-[1vh] bg-bb-blue-medium`}
         onKeyDown={handleKeyPress}
       >
         <button onClick={handleClose} className="absolute right-2 top-2">

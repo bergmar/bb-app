@@ -8,7 +8,7 @@ import { validateChunksData } from '../../utils';
 import BracketsBox from '../../components/BracketsBox';
 
 function Brackets() {
-  const { data, refetch } = useQuery({
+  const { data, refetch } = useQuery<string[]>({
     queryKey: ['brackets'],
     queryFn: async () => await fetchFromBackend('brackets'),
     staleTime: Infinity
@@ -40,7 +40,7 @@ function Brackets() {
 
       {data &&
         data.map((chunkItem, index) => {
-          const validation = chunkItem && validateChunksData(chunkItem);
+          const validation = validateChunksData(chunkItem);
           return (
             <BracketsBox
               key={chunkItem.substring(0, 20)}

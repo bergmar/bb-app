@@ -8,14 +8,14 @@ import { Accessors, BBChartData } from '../types';
 import { getAnimatedLineSeries } from '../utils';
 
 interface TooltipData {
-  nearestDatum: { key: string };
+  nearestDatum?: { key?: string; datum: string };
 }
 interface Tooltip {
   tooltipData: TooltipData;
 }
 
 interface Props {
-  data: BBChartData;
+  data: BBChartData[];
 }
 
 const accessors: Accessors = {
@@ -41,14 +41,23 @@ const Chart = ({ data }: Props) => {
           <div>
             <div
               style={{
-                color: colorScale && colorScale(tooltipData.nearestDatum.key)
+                color:
+                  colorScale &&
+                  tooltipData?.nearestDatum?.key &&
+                  colorScale(tooltipData?.nearestDatum?.key)
               }}
             >
-              {tooltipData.nearestDatum.key}
+              {tooltipData?.nearestDatum?.key}
             </div>
-            {accessors.xAccessor(tooltipData.nearestDatum.datum)}
+
+            {tooltipData?.nearestDatum?.datum &&
+              // @ts-expect-error - no ts support for visx
+              accessors.xAccessor(tooltipData.nearestDatum.datum)}
             {', '}
-            {accessors.yAccessor(tooltipData.nearestDatum.datum)}
+            {
+              // @ts-expect-error - no ts support for visx
+              accessors.yAccessor(tooltipData.nearestDatum.datum)
+            }
           </div>
         )}
       />

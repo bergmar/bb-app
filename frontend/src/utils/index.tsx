@@ -54,6 +54,7 @@ export const getAnimatedLineSeries = (
         <AnimatedLineSeries
           dataKey={`${data.t}${vKey}`}
           key={`${data.t}${vKey}`}
+          // @ts-expect-error - no ts support for visx
           data={thisVData}
           {...accessors}
         />

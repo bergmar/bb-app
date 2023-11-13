@@ -20,7 +20,10 @@ const RouteHandler = () => {
   const { data } = useQuery({
     queryKey: ['router'],
     queryFn: async () => {
-      const items = await fetchFromBackend('menu-items');
+      let items = [];
+      try {
+        items = await fetchFromBackend('menu-items');
+      } catch (e) {}
       const routerData = [
         {
           path: '/',
@@ -28,7 +31,8 @@ const RouteHandler = () => {
           children: [
             {
               path: '',
-              element: <Start />
+              element: <Start />,
+              state: { title: 'Welcome to Baffin Baywatch!' }
             },
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ...items.map(({ module, path }: any) => {

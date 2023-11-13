@@ -97,8 +97,20 @@ function notFoundResponse() {
 
 function generateMenuItems() {
   const mockMenuItems = [
-    { name: 'Brackets', path: 'brackets', module: 'brackets' },
-    { name: 'Charts', path: 'charts', module: 'charts' },
+    {
+      name: 'Brackets',
+      path: 'brackets',
+      module: 'brackets',
+      state: {
+        title: 'Brackets'
+      }
+    },
+    {
+      name: 'Charts',
+      path: 'charts',
+      module: 'charts',
+      state: { title: 'Charts' }
+    }
   ];
 
   return {

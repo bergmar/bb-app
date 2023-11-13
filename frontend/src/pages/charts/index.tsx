@@ -26,13 +26,19 @@ function Charts() {
             for either, but here they are—doing chart acrobatics just for you.
             Enjoy the mystery ride!
           </Paragraph>
-          <Button
-            onClick={() => refetch()}
-            isDisabled={isRefetching}
-            className="my-5"
-          >
-            Get the latest of stats
-          </Button>
+          <Paragraph>
+            Each date in this chart displays the average value of each v-point
+            of that day.
+          </Paragraph>
+          <div className="flex justify-center">
+            <Button
+              onClick={() => refetch()}
+              isDisabled={isRefetching}
+              className="my-5"
+            >
+              Get the latest of stats
+            </Button>
+          </div>
           <Paragraph>{isLoading && 'Loading data...'}</Paragraph>
         </TextContent>
         {data && <Chart data={averageData} />}
