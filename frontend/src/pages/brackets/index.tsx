@@ -6,6 +6,7 @@ import TextContent from '../../components/TextContent';
 import Button from '../../components/Button';
 import { validateChunksData } from '../../utils';
 import BracketsBox from '../../components/BracketsBox';
+import { useRef } from 'react';
 
 function Brackets() {
   const { data, refetch } = useQuery<string[]>({
@@ -13,6 +14,7 @@ function Brackets() {
     queryFn: async () => await fetchFromBackend('brackets'),
     staleTime: Infinity
   });
+  const firstButtonDiv = useRef<HTMLDivElement>(null);
 
   return (
     <TextContent>
@@ -32,24 +34,38 @@ function Brackets() {
           <Paragraph>Let's meet our candidates.</Paragraph>
         </div>
       </div>
-      <div className="flex justify-center py-10">
+      <div className="flex justify-center py-10" ref={firstButtonDiv}>
         <Button onClick={() => refetch()}>
           Update the list of candidates!
         </Button>
       </div>
 
-      {data &&
-        data.map((chunkItem, index) => {
-          const validation = validateChunksData(chunkItem);
-          return (
-            <BracketsBox
-              key={chunkItem.substring(0, 20)}
-              chunkItem={chunkItem}
-              validation={validation}
-              no={index + 1}
-            />
-          );
-        })}
+      <div>
+        {data &&
+          data.map((chunkItem, index) => {
+            const validation = validateChunksData(chunkItem);
+            return (
+              <BracketsBox
+                key={chunkItem.substring(0, 20)}
+                chunkItem={chunkItem}
+                validation={validation}
+                no={index + 1}
+              />
+            );
+          })}
+      </div>
+      <div className="flex justify-center py-10">
+        <Button
+          onClick={() => {
+            firstButtonDiv.current?.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => {
+              refetch();
+            }, 1200);
+          }}
+        >
+          Update the list of candidates!
+        </Button>
+      </div>
     </TextContent>
   );
 }

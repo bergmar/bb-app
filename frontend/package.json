@@ -24,7 +24,8 @@
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.18.0",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "use-debounce": "^10.0.0"
   },
   "devDependencies": {
     "@esbuild/linux-arm64": "^0.18.20",

@@ -8,7 +8,7 @@ interface Props {
 function ValidIndicator({ isValid }: Props) {
   return (
     <div className="inline-flex items-center gap-1 rounded-md bg-bb-sand-base p-1 px-4">
-      {isValid ? 'Is valid!' : `Has errors`}
+      {isValid ? 'Is valid!' : `Has an error`}
       <div
         className={clsx(
           'pb-[.1rem]',

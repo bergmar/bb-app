@@ -16,6 +16,7 @@ interface Tooltip {
 
 interface Props {
   data: BBChartData[];
+  width: number;
 }
 
 const accessors: Accessors = {
@@ -23,10 +24,15 @@ const accessors: Accessors = {
   yAccessor: (d) => d.y
 };
 
-const Chart = ({ data }: Props) => {
+const Chart = ({ data, width }: Props) => {
   const animatedLineSeries = getAnimatedLineSeries(data, accessors);
   return (
-    <XYChart height={300} xScale={{ type: 'band' }} yScale={{ type: 'linear' }}>
+    <XYChart
+      height={300}
+      width={width}
+      xScale={{ type: 'band' }}
+      yScale={{ type: 'linear' }}
+    >
       <AnimatedAxis orientation="bottom" />
       <AnimatedGrid columns={false} numTicks={4} />
 

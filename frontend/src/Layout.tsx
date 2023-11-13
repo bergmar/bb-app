@@ -22,7 +22,6 @@ const Layout = () => {
 
   useEffect(() => {
     (document as Document).title = getTitle(location.pathname);
-    console.log(location);
   }, [location]);
 
   const isStart = isStartPage(useLocation());

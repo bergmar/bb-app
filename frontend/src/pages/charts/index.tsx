@@ -5,7 +5,9 @@ import Heading from '../../components/Heading';
 import Paragraph from '../../components/Paragraph';
 import TextContent from '../../components/TextContent';
 import Button from '../../components/Button';
-import { getAverageValues } from '../../utils';
+import { forceNumber, getAverageValues } from '../../utils';
+import { useEffect, useRef, useState } from 'react';
+import { useDebounce } from 'use-debounce';
 
 function Charts() {
   const { data, isLoading, refetch, isRefetching } = useQuery({
@@ -13,12 +15,33 @@ function Charts() {
     queryFn: async () => await fetchFromBackend('data-series'),
     staleTime: Infinity
   });
+  const parentDiv = useRef<HTMLDivElement>(null);
+  const [parentWidth, setParentWidth] = useState<number>(
+    forceNumber(window?.current?.clientWidth)
+  );
+  const [availableWidth] = useDebounce(parentWidth, 300);
+
+  useEffect(() => {
+    setParentWidth(forceNumber(parentDiv?.current?.clientWidth));
+  }, [parentDiv]);
+
+  useEffect(() => {
+    const handle = () =>
+      setParentWidth(forceNumber(parentDiv?.current?.clientWidth));
+    // Attach the debounced handler to the window resize event
+    window.addEventListener('resize', handle);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('resize', handle);
+    };
+  }, []);
 
   const averageData = getAverageValues(data);
 
   return (
     <>
-      <div className="relative z-10">
+      <div className="relative z-10" ref={parentDiv}>
         <Heading>Charts</Heading>
         <TextContent>
           <Paragraph>
@@ -41,7 +64,7 @@ function Charts() {
           </div>
           <Paragraph>{isLoading && 'Loading data...'}</Paragraph>
         </TextContent>
-        {data && <Chart data={averageData} />}
+        {data && <Chart data={averageData} width={availableWidth} />}
       </div>
     </>
   );
