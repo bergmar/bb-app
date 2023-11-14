@@ -16,9 +16,7 @@ function Charts() {
     staleTime: Infinity
   });
   const parentDiv = useRef<HTMLDivElement>(null);
-  const [parentWidth, setParentWidth] = useState<number>(
-    forceNumber(window?.current?.clientWidth)
-  );
+  const [parentWidth, setParentWidth] = useState(0);
   const [availableWidth] = useDebounce(parentWidth, 300);
 
   useEffect(() => {
