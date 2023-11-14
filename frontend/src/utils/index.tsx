@@ -71,7 +71,7 @@ export const validateChunksData = (chunk: string): ValidationResult => {
     allowedBrackets.includes(`${a}${b}`);
 
   const getCorresponding = (start: string): string | undefined =>
-    allowedBrackets.find((item) => item.startsWith(start));
+    allowedBrackets.find((item) => item.startsWith(start))?.slice(1);
 
   const isOpener = (input: string): boolean => openers.includes(input);
 
